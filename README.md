@@ -54,6 +54,24 @@ This version works on **Windows** by communicating with Illustrator’s scriptin
    python illustrator/server.py
    ```
 
+## Run With One Script (Windows + Git Bash)
+
+You can run setup + startup using:
+
+```bash
+bash run_server.sh
+```
+
+What this script does:
+- Creates `.venv` if it does not exist
+- Installs dependencies only when needed
+- Skips reinstall when requirements are already satisfied
+- Re-checks environment health before skipping install (`pip check` + key imports)
+- Starts the MCP server
+
+How to stop the server:
+- Press `Ctrl+C` in the terminal where the server is running
+
 ---
 
 ## 🛠️ Setting up Claude Desktop
