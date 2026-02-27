@@ -90,14 +90,15 @@ To allow Claude Desktop to communicate with the MCP server:
 
     "mcpServers": {
         "illustrator": {
-            "command": "python",
+            "command": "C:\\Users\\<YourUser>\\Projects\\illustrator-mcp\\.venv\\Scripts\\python.exe",
             "args": [
-                "%USERPROFILE%/Projects/illustrator-mcp/illustrator/server.py"
+                "C:\\Users\\<YourUser>\\Projects\\illustrator-mcp\\illustrator\\server.py"
             ]
         }
     }
 
    ```
+   Use absolute paths and replace `<YourUser>` with your Windows username.
    If your config already has JSON content, merge this under the top-level object.
 
 3. Restart Claude Desktop after saving the config.
