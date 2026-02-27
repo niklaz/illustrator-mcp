@@ -29,8 +29,8 @@ This version works on **Windows** by communicating with Illustrator’s scriptin
 2. **Clone this repository**
 
    ```bash
-   git clone https://github.com/krVatsal/illustrator-mcp-server.git
-   cd illustrator-mcp-server
+   git clone https://github.com/krVatsal/illustrator-mcp.git
+   cd illustrator-mcp
    ```
 
 3. **Create a virtual environment** (recommended)
