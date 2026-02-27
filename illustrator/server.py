@@ -26,14 +26,24 @@ except ImportError as e:
     WIN32_AVAILABLE = False
     win32com = None
 
-from prompt import (
-    get_system_prompt, 
-    get_prompt_suggestions, 
-    get_advanced_templates, 
-    get_prompting_tips,
-    display_help,
-    format_advanced_template
-)
+try:
+    from .prompt import (
+        get_system_prompt,
+        get_prompt_suggestions,
+        get_advanced_templates,
+        get_prompting_tips,
+        display_help,
+        format_advanced_template,
+    )
+except ImportError:
+    from prompt import (
+        get_system_prompt,
+        get_prompt_suggestions,
+        get_advanced_templates,
+        get_prompting_tips,
+        display_help,
+        format_advanced_template,
+    )
 
 # Set up logging
 logging.basicConfig(
