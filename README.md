@@ -81,12 +81,6 @@ To allow Claude Desktop to communicate with the MCP server:
 1. Open the configuration file:
 
    ```
-   C:\Users\nikola\AppData\Roaming\Claude\claude_desktop_config.json
-   ```
-
-   or:
-
-   ```
    %APPDATA%\Claude\claude_desktop_config.json
    ```
 
@@ -98,7 +92,7 @@ To allow Claude Desktop to communicate with the MCP server:
         "illustrator": {
             "command": "python",
             "args": [
-                "C:/Users/nikola/Projects/illustrator-mcp/illustrator/server.py"
+                "%USERPROFILE%/Projects/illustrator-mcp/illustrator/server.py"
             ]
         }
     }
