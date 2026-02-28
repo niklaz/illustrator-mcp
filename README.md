@@ -64,6 +64,7 @@ bash run_server.sh
 
 What this script does:
 - Creates `.venv` if it does not exist
+- Bootstraps `pip` in `.venv` if missing
 - Installs dependencies only when needed
 - Skips reinstall when requirements are already satisfied
 - Re-checks environment health before skipping install (`pip check` + key imports)

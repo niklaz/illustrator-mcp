@@ -52,6 +52,27 @@ requirements_hash() {
   sha256sum "$REQ_FILE" | awk '{print $1}'
 }
 
+has_pip() {
+  $PYTHON_BIN -m pip --version >/dev/null 2>&1
+}
+
+ensure_pip() {
+  if has_pip; then
+    return 0
+  fi
+
+  log "pip not found in .venv. Bootstrapping with ensurepip..."
+  if ! $PYTHON_BIN -m ensurepip --upgrade >/dev/null 2>&1; then
+    log "Failed to bootstrap pip. Please install pip for this Python and retry."
+    exit 1
+  fi
+
+  if ! has_pip; then
+    log "pip is still unavailable after ensurepip."
+    exit 1
+  fi
+}
+
 requirements_ok() {
   local expected_hash current_hash
 
@@ -63,6 +84,10 @@ requirements_ok() {
   current_hash="$(requirements_hash)"
 
   if [ "$expected_hash" != "$current_hash" ]; then
+    return 1
+  fi
+
+  if ! has_pip; then
     return 1
   fi
 
@@ -79,6 +104,7 @@ requirements_ok() {
 }
 
 install_requirements() {
+  ensure_pip
   log "Installing dependencies from requirements.txt"
   $PYTHON_BIN -m pip install --upgrade pip
   $PYTHON_BIN -m pip install -r "$REQ_FILE"
@@ -87,6 +113,7 @@ install_requirements() {
 
 main() {
   ensure_venv
+  ensure_pip
 
   if requirements_ok; then
     log "Dependencies are already satisfied. Skipping install."
