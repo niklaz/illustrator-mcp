@@ -69,6 +69,7 @@ What this script does:
 - Skips reinstall when requirements are already satisfied
 - Re-checks environment health before skipping install (`pip check` + key imports)
 - Starts the MCP server
+- Handles Windows/POSIX path conversion when launched from Git Bash or WSL-style shells
 
 How to stop the server:
 - Press `Ctrl+C` in the terminal where the server is running
