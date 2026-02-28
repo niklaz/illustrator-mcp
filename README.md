@@ -103,6 +103,9 @@ To allow Claude Desktop to communicate with the MCP server:
    If your config already has JSON content, merge this under the top-level object.
 
 3. Restart Claude Desktop after saving the config.
+4. Do not start `python illustrator/server.py` manually when using Claude Desktop MCP.
+   Claude Desktop starts and stops the server process automatically from this config.
+   Run the server manually only for local debugging.
 NOTE: Same method can be used with Cursor also, if Claude desktop fails(Might be bug in claude desktop with versions) then try on Cursor
 ---
 
