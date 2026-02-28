@@ -54,6 +54,27 @@ logging.basicConfig(
 
 server = Server("illustrator")
 
+
+def _print_client_config_hint() -> None:
+    """Print a ready-to-copy config snippet for MCP clients."""
+    python_path = sys.executable.replace("\\", "\\\\")
+    server_path = os.path.abspath(__file__).replace("\\", "\\\\")
+    hint = f"""
+Add this MCP config in Codex/Cursor/Claude client settings:
+{{
+  "mcpServers": {{
+    "illustrator": {{
+      "command": "{python_path}",
+      "args": [
+        "{server_path}"
+      ]
+    }}
+  }}
+}}
+"""
+    print(hint, file=sys.stderr)
+    sys.stderr.flush()
+
 @server.list_tools()
 async def handle_list_tools() -> list[types.Tool]:
     logging.info("Listing available tools.")
@@ -300,6 +321,7 @@ async def main():
         async with mcp.server.stdio.stdio_server() as (read_stream, write_stream):
             print("Server streams established, starting server...", file=sys.stderr)
             sys.stderr.flush()
+            _print_client_config_hint()
             
             await server.run(
                 read_stream,
